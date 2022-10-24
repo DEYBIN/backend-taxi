@@ -1,0 +1,41 @@
+
+.simple-typeahead
+	// position: relative
+	// width: 100%
+	text-align: left
+	.simple-typeahead-list
+		position: absolute
+		// width: 100%
+		border: none
+		max-height: 400px
+		min-width: 400px
+		overflow-y: auto
+		z-index: 10000
+		box-shadow: #000000a8 0px 0px 8px 0px
+		.simple-typeahead-list-item
+			cursor: pointer
+			background-color: white
+			text-transform: capitalize
+			padding: 0.6rem 1rem
+			&::last-child
+				border: none
+		.simple-typeahead-list-item-active
+			background-color: var(--primary-color-fancy)
+			color: white
+
+.input-autocomplete::-webkit-input-placeholder
+	font-size: 15px
+	font-weight: 100
+	text-transform: capitalize
+	opacity: 0.4
+	// color: rgb(200,200,200)
+
+.input-autocomplete:-moz-placeholder
+	font-size: 15px
+	font-weight: 100
+	text-transform: capitalize
+
+.input-autocomplete:-ms-input-placeholder
+	font-size: 15px
+	font-weight: 100
+	text-transform: capitalize
