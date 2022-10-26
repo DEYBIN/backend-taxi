@@ -70,6 +70,7 @@ export default {
 		filter: { type: Boolean, default: true },
 		data_container_table_key: { String, default: '1' },
 		height: { Number, default: 400 },
+		width: { Number, default: "auto" },
 		dataReq: {
 			Array,
 			default: [],
@@ -106,7 +107,7 @@ export default {
 		this.length_header = document.querySelectorAll('#' + this._id_table_head + ' tr').length;
 
 		this.interaction.styleHeight = {
-			height: this.height + 'px',
+			height: this.height + 'px', width: this.width + 'px',
 		};
 		if (this.reading) {
 			this.tableMouseDown = () => { };

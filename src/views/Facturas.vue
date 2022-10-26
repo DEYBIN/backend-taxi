@@ -11,7 +11,7 @@
                 </div>
             </div>
 
-            <Tables :height="250" @dataResp="handlerSelect" :dataReq="required.services" @dblclick="dblclicktable"
+            <Tables :height="200" @dataResp="handlerSelect" :dataReq="required.services" @dblclick="dblclicktable"
                 :filter="false">
                 <template #th>
                     <th>Placa</th>
@@ -24,8 +24,7 @@
                     <td>{{item.s_impo}}</td>
                 </template>
             </Tables>
-
-            <Tables :height="200" :filter="false" :dataReq="required.detalleFact" @dataResp="handlerSelect">
+            <Tables :height="150" :filter="false" :dataReq="required.detalleFact" @dataResp="handlerSelect">
                 <template #th>
                     <th>Año</th>
                     <th>Mes</th>
@@ -39,6 +38,14 @@
                     <td>{{item.f_pago}}</td>
                     <td>{{item.s_impo}}</td>
                     <td>{{item.k_stad}}</td>
+                    <td>
+                        <input @click="agregarPago()" type="checkbox">
+                    </td>
+                </template>
+            </Tables>
+            <Tables :dataReq="agregarPago" :height="110" :filter="false">
+                <template #th>
+                    <th>Pagado</th>
                 </template>
             </Tables>
         </div>
@@ -67,7 +74,7 @@ export default {
     data() {
         return {
             dom: {
-                id_serv: this.$route.query.id_serv,
+                id_serv: '',
                 select: {},
                 l_clie: ""
             },
@@ -80,8 +87,9 @@ export default {
                 subMenu: [
                     {
                         text: "Detalle factura", icon: "event", disabled: "disabled", action: () => {
-                            API("servicio/get/det-fact/" + this.dom.id_serv).then(resp => {
+                            API("servicio/get/det-fact/" + this.dom.select.id_serv).then(resp => {
                                 this.required.detalleFact = resp.detalleFact
+                                console.log(resp);
                             })
                         }
                     }
@@ -95,7 +103,7 @@ export default {
         },
         //metodo para el bloble click
         dblclicktable() {
-            API("servicio/get/det-fact/" + this.dom.id_serv).then(resp => {
+            API("servicio/get/det-fact/" + this.dom.select.id_serv).then(resp => {
                 this.required.detalleFact = resp.detalleFact
             })
         },
@@ -133,6 +141,10 @@ export default {
             API("servicio/get/det-fact/" + id_serv).then(resp => {
                 this.required.detalleFact = resp.detalleFact
             })
+        },
+        //agregar el pago del cliente}
+        agregarPago(){
+            console.log("funcionando");
         }
 
     },
